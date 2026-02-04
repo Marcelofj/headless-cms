@@ -1,0 +1,38 @@
+{
+  "name": "headless-cms",
+  "version": "0.1.0",
+  "description": "Type-driven headless CMS built with TypeScript",
+  "type": "module",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "tsx watch src/main.ts",
+    "build": "tsc -p tsconfig.build.jsonc",
+    "start": "node dist/main.js",
+    "typecheck": "tsc --noEmit --watch",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "test": "echo \"Tests will be added in Day 14\" && exit 0"
+  },
+  "keywords": [
+    "cms",
+    "headless-cms",
+    "typescript",
+    "type-driven-design",
+    "clean-architecture"
+  ],
+  "author": "Marcelo Francisco",
+  "license": "MIT",
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.7.1",
+    "@types/node": "^25.2.0",
+    "@typescript-eslint/eslint-plugin": "^8.54.0",
+    "@typescript-eslint/parser": "^8.54.0",
+    "eslint": "^9.39.2",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.54.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
