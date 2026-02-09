@@ -63,10 +63,12 @@ export type {
 // Article
 export type {
   Article,
-  SEOMetadata,
   NewsArticle,
   OpinionArticle,
   TutorialArticle,
   ReviewArticle,
   AnyArticle,
 } from './article.type.js'
+
+// SEO
+export type { SEOMetadata } from './seo-metadata.type.js'

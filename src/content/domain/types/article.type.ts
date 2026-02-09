@@ -2,17 +2,7 @@ import type { ContentType } from './content-type.type.js'
 import type { ArticleId } from './ids.type.js'
 import type { ArticleMetadata } from './article-metadata.type.js'
 import type { ArticleContent } from './article-content.type.js'
-
-/**
- * Estrutura de SEO metadata
- */
-export type SEOMetadata = {
-  metaTitle?: string       // Título para SEO (se diferente do título)
-  metaDescription?: string // Descrição para SEO
-  keywords: string[]       // Palavras-chave
-  ogImage?: string         // Open Graph image URL
-  canonicalUrl?: string    // URL canônica
-}
+import type { SEOMetadata } from './seo-metadata.type.js'
 
 /**
  * Tipo Article genérico.
@@ -31,6 +21,7 @@ export type Article<T extends ContentType = ContentType> = {
   // Lookup maps garantem tipos corretos
   metadata: ArticleMetadata[T]
   content: ArticleContent[T]
+  seo?: SEOMetadata
 }
 
 /**
@@ -44,4 +35,8 @@ export type ReviewArticle = Article<'review'>
 /**
  * Union type de todos os tipos de artigos
  */
-export type AnyArticle = NewsArticle | OpinionArticle | TutorialArticle | ReviewArticle
+export type AnyArticle =
+  | NewsArticle
+  | OpinionArticle
+  | TutorialArticle
+  | ReviewArticle
