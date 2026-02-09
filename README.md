@@ -79,22 +79,22 @@ Seguimos as 4 camadas concêntricas da Clean Architecture:
 
 ```
 ┌─────────────────────────────────────────┐
-│   Frameworks & Drivers (Camada 4)      │  ← Express, Postgres, S3
+│   Frameworks & Drivers (Camada 4)       │  ← Express, Postgres, S3
 └─────────────────────────────────────────┘
-              ↓ depende
+              ↓ depends
 ┌─────────────────────────────────────────┐
-│   Interface Adapters (Camada 3)        │  ← Controllers, Repositories
+│   Interface Adapters (Camada 3)         │  ← Controllers, Repositories
 │   Infrastructure/API, Infrastructure/   │     (HTTP → App, App → DB)
 │   Persistence, Infrastructure/Storage   │
 └─────────────────────────────────────────┘
-              ↓ depende
+              ↓ depends
 ┌─────────────────────────────────────────┐
-│  Application Business Rules (Camada 2) │  ← Services, Use Cases
+│  Application Business Rules (Camada 2)  │  ← Services, Use Cases
 │         content/application/            │
 └─────────────────────────────────────────┘
-              ↓ depende
+              ↓ depends
 ┌─────────────────────────────────────────┐
-│ Enterprise Business Rules (Camada 1)   │  ← Entities, Types, Policies
+│ Enterprise Business Rules (Camada 1)    │  ← Entities, Types, Policies
 │           content/domain/               │     (NÚCLEO PURO)
 └─────────────────────────────────────────┘
 ```
@@ -233,23 +233,23 @@ Articles transition through states with **proper authorization checks**:
 ```
 ┌─────────┐                                                      
 │  draft  │ ◄──────────────────────────────────────┐            
-└─────────┘                                         │            
-     │                                              │            
-     │ submitForReview() [author or editor]       │            
-     ↓                                              │            
+└─────────┘                                        │            
+     │                                             │            
+     │ submitForReview() [author or editor]        │            
+     ↓                                             │            
 ┌──────────────┐                                   │            
-│ reviewing │                                   │            
+│ reviewing │                                      │            
 └──────────────┘                                   │            
-     │                                              │            
-     ├─→ approveReview() [publisher+]             │            
-     │         ↓                                    │            
-     │   ┌─────────────┐                          │            
-     │   │  published  │                          │            
-     │   └─────────────┘                          │            
-     │         │                                    │            
+     │                                             │            
+     ├─→ approveReview() [publisher+]              │            
+     │         ↓                                   │            
+     │   ┌─────────────┐                           │            
+     │   │  published  │                           │            
+     │   └─────────────┘                           │            
+     │         │                                   │            
      │         │ archive() [editor+]               │            
-     │         ↓                                    │            
-     │   ┌──────────┐      restore() [admin]      │            
+     │         ↓                                   │            
+     │   ┌──────────┐      restore() [admin]       │            
      │   │ archived │ ─────────────────────────────┘            
      │   └──────────┘                                           
      │                                                           
