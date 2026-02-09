@@ -162,7 +162,7 @@ Everything is typed. **No runtime validation needed** because types prevent inva
 // Article status is a discriminated union
 type ArticleStatus =
   | { status: 'draft'; editableBy: AuthorId[] }
-  | { status: 'under_review'; reviewer: AuthorId; submittedAt: Date }
+  | { status: 'reviewing'; reviewer: AuthorId; submittedAt: Date }
   | { status: 'published'; publishedAt: Date; url: string }
   | { status: 'archived'; archivedAt: Date; reason: string }
 
@@ -238,7 +238,7 @@ Articles transition through states with **proper authorization checks**:
      │ submitForReview() [author or editor]       │            
      ↓                                              │            
 ┌──────────────┐                                   │            
-│ under_review │                                   │            
+│ reviewing │                                   │            
 └──────────────┘                                   │            
      │                                              │            
      ├─→ approveReview() [publisher+]             │            

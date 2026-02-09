@@ -51,5 +51,4 @@ coverage/
 *.tsbuildinfo
 
 #docs
-ARCHITECTURE.md
-CONTENT.md
+docs/
