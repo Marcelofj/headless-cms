@@ -1,4 +1,4 @@
-import type { ContentType } from './content-type.type.js'
+import type { ArticleType } from './article.type.js'
 
 /**
  * Metadata específica para notícias
@@ -42,9 +42,9 @@ export type ReviewMetadata = {
 }
 
 /**
- * Lookup map: ContentType → Metadata
+ * Lookup map: ArticleType → Metadata
  * 
- * Uso: ArticleMetadata[T] onde T extends ContentType
+ * Uso: ArticleMetadata[T] onde T extends ArticleType
  * 
  * Garante que cada tipo de conteúdo tenha a metadata correta.
  */
@@ -56,6 +56,6 @@ export type ArticleMetadata = {
 }
 
 /**
- * Helper type: extrai o tipo de metadata para um ContentType específico
+ * Helper type: extrai o tipo de metadata para um ArticleType específico
  */
-export type MetadataForType<T extends ContentType> = ArticleMetadata[T]
+export type MetadataForType<T extends ArticleType> = ArticleMetadata[T]

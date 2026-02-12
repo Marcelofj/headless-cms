@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.jsonc",
   "compilerOptions": {
+    "noEmitOnError": true,
     "sourceMap": false,
     "declaration": false,
     "declarationMap": false,

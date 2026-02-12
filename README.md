@@ -183,7 +183,7 @@ function getPublishDate(status: ArticleStatus): Date | null {
 Different article types have **different metadata and content structures**:
 
 ```typescript
-type ContentType = 'news' | 'opinion' | 'tutorial' | 'review'
+type ArticleType = 'news' | 'opinion' | 'tutorial' | 'review'
 
 // Lookup maps define structure per type
 type ArticleMetadata = {
@@ -206,7 +206,7 @@ type ArticleMetadata = {
 }
 
 // Usage (fully type-safe):
-type ArticleEntity<T extends ContentType> = {
+type ArticleEntity<T extends ArticleType> = {
   type: T
   metadata: ArticleMetadata[T]  // ← Automatically correct type!
   content: ArticleContent[T]
@@ -267,7 +267,7 @@ Each transition **requires specific permissions** (enforced by policies).
 Every content change creates an **immutable snapshot**:
 
 ```typescript
-type ArticleVersionEntity<T extends ContentType> = {
+type ArticleVersionEntity<T extends ArticleType> = {
   id: string
   articleId: string
   version: number

@@ -2,13 +2,13 @@
  * Barrel export de todos os tipos do domínio.
  * 
  * Facilita imports:
- *   import { ContentType, Article, ArticleStatus } from '@/content/domain/types'
+ *   import { ArticleType, Article, ArticleStatus } from '@/content/domain/types'
  * 
  * Em vez de múltiplos imports individuais.
  */
 
-// Content Type
-export type { ContentType } from './content-type.type.js'
+// Lookup-to-Union
+export type { ArticleByType } from './article-by-type.type.js'
 
 // IDs
 export type {
@@ -17,7 +17,7 @@ export type {
   CategoryId,
   TagId,
   MediaId,
-  VersionId,
+  VersionId
 } from './ids.type.js'
 
 export {
@@ -26,7 +26,7 @@ export {
   createCategoryId,
   createTagId,
   createMediaId,
-  createVersionId,
+  createVersionId
 } from './ids.type.js'
 
 // Article Status
@@ -36,7 +36,7 @@ export {
   isUnderReview,
   isPublished,
   isArchived,
-  getPublishedDate,
+  getPublishedDate
 } from './article-status.type.js'
 
 // Metadata
@@ -46,7 +46,7 @@ export type {
   OpinionMetadata,
   TutorialMetadata,
   ReviewMetadata,
-  MetadataForType,
+  MetadataForType
 } from './article-metadata.type.js'
 
 // Content
@@ -57,17 +57,13 @@ export type {
   TutorialContent,
   TutorialSection,
   ReviewContent,
-  ContentForType,
+  ContentForType
 } from './article-content.type.js'
 
 // Article
 export type {
-  Article,
-  NewsArticle,
-  OpinionArticle,
-  TutorialArticle,
-  ReviewArticle,
-  AnyArticle,
+  ArticleType,
+  Article
 } from './article.type.js'
 
 // SEO

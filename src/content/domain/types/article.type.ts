@@ -1,20 +1,33 @@
-import type { ContentType } from './content-type.type.js'
 import type { ArticleId } from './ids.type.js'
 import type { ArticleMetadata } from './article-metadata.type.js'
 import type { ArticleContent } from './article-content.type.js'
 import type { SEOMetadata } from './seo-metadata.type.js'
 
 /**
+ * Union Type.
+ * Tipos de conteúdo suportados pelo CMS.
+ * 
+ * Cada tipo tem estrutura específica de metadata e content.
+ * Novos tipos devem ser adicionados aqui E nos lookup maps correspondentes.
+ */
+export type ArticleType =
+  | 'news'      // Notícias factuais
+  | 'opinion'   // Artigos de opinião
+  | 'tutorial'  // Guias e tutoriais
+  | 'review'    // Reviews de produtos/serviços
+
+
+/**
  * Tipo Article genérico.
  * 
- * T extends ContentType preserva o tipo específico, garantindo que:
+ * T extends ArticleType preserva o tipo específico, garantindo que:
  * - metadata é do tipo correto (ArticleMetadata[T])
  * - content é da estrutura correta (ArticleContent[T])
  * 
  * Exemplo:
  *   Article<'tutorial'> → metadata é TutorialMetadata, content é TutorialContent
  */
-export type Article<T extends ContentType = ContentType> = {
+export type Article<T extends ArticleType> = {
   id: ArticleId
   type: T
 
@@ -23,20 +36,3 @@ export type Article<T extends ContentType = ContentType> = {
   content: ArticleContent[T]
   seo?: SEOMetadata
 }
-
-/**
- * Helper types para casos específicos
- */
-export type NewsArticle = Article<'news'>
-export type OpinionArticle = Article<'opinion'>
-export type TutorialArticle = Article<'tutorial'>
-export type ReviewArticle = Article<'review'>
-
-/**
- * Union type de todos os tipos de artigos
- */
-export type AnyArticle =
-  | NewsArticle
-  | OpinionArticle
-  | TutorialArticle
-  | ReviewArticle

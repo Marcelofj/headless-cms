@@ -7,17 +7,15 @@
 
 import type {
   Article,
-  TutorialArticle,
-  NewsArticle,
-  ArticleStatus,
-  AnyArticle,
+  ArticleByType,
+  ArticleStatus
 } from './content/domain/types/index.js'
 
 import {
   createArticleId,
   createAuthorId,
   isPublished,
-  getPublishedDate,
+  getPublishedDate
 } from './content/domain/types/index.js'
 
 // ============================================================================
@@ -26,7 +24,7 @@ import {
 
 console.log('=== Exemplo 1: Tutorial Article ===\n')
 
-const tutorialArticle: TutorialArticle = {
+const tutorialArticle: Article<'tutorial'> = {
   id: createArticleId('tutorial-123'),
   type: 'tutorial',
 
@@ -38,8 +36,8 @@ const tutorialArticle: TutorialArticle = {
     learningOutcomes: [
       'Entender type-driven design',
       'Usar lookup maps',
-      'Criar discriminated unions',
-    ],
+      'Criar discriminated unions'
+    ]
   },
 
   // Content específica de tutorial
@@ -50,15 +48,15 @@ const tutorialArticle: TutorialArticle = {
         title: 'O que é Type-Driven Design?',
         body: 'Type-driven design significa usar o sistema de tipos...',
         code: 'type Article<T> = { type: T; metadata: Metadata[T] }',
-        codeLanguage: 'typescript',
+        codeLanguage: 'typescript'
       },
       {
         title: 'Lookup Maps',
-        body: 'Lookup maps permitem mapear tipos para estruturas...',
-      },
+        body: 'Lookup maps permitem mapear tipos para estruturas...'
+      }
     ],
-    conclusion: 'Agora você entende os conceitos básicos!',
-  },
+    conclusion: 'Agora você entende os conceitos básicos!'
+  }
 }
 
 console.log('Tutorial article criado:')
@@ -67,7 +65,7 @@ console.log({
   type: tutorialArticle.type,
   difficulty: tutorialArticle.metadata.difficulty,
   estimatedDuration: tutorialArticle.metadata.estimatedDuration,
-  sectionsCount: tutorialArticle.content.sections.length,
+  sectionsCount: tutorialArticle.content.sections.length
 })
 console.log()
 
@@ -77,7 +75,7 @@ console.log()
 
 console.log('=== Exemplo 2: News Article ===\n')
 
-const newsArticle: NewsArticle = {
+const newsArticle: Article<'news'> = {
   id: createArticleId('news-456'),
   type: 'news',
 
@@ -86,7 +84,7 @@ const newsArticle: NewsArticle = {
     source: 'Reuters',
     location: 'São Paulo, Brasil',
     breaking: true,
-    verifiedAt: new Date('2024-02-05'),
+    verifiedAt: new Date('2024-02-05')
   },
 
   // Content específica de news
@@ -97,10 +95,10 @@ const newsArticle: NewsArticle = {
       {
         text: 'Esta é uma medida importante para o país',
         author: 'Ministro da Economia',
-        role: 'Ministro',
-      },
-    ],
-  },
+        role: 'Ministro'
+      }
+    ]
+  }
 }
 
 console.log('News article criado:')
@@ -108,7 +106,7 @@ console.log({
   id: newsArticle.id,
   type: newsArticle.type,
   source: newsArticle.metadata.source,
-  breaking: newsArticle.metadata.breaking,
+  breaking: newsArticle.metadata.breaking
 })
 console.log()
 
@@ -120,14 +118,14 @@ console.log('=== Exemplo 3: Discriminated Union (ArticleStatus) ===\n')
 
 const draftStatus: ArticleStatus = {
   status: 'draft',
-  editableBy: [createAuthorId('author-1'), createAuthorId('author-2')],
+  editableBy: [createAuthorId('author-1'), createAuthorId('author-2')]
 }
 
 const publishedStatus: ArticleStatus = {
   status: 'published',
   publishedAt: new Date('2024-02-01'),
   publishedBy: createAuthorId('publisher-1'),
-  url: '/tutorials/type-driven-design',
+  url: '/tutorials/type-driven-design'
 }
 
 // Type guard funciona!
@@ -153,7 +151,7 @@ console.log()
 
 console.log('=== Exemplo 4: Generics ===\n')
 
-function getArticleType<T extends Article>(article: T): T['type'] {
+function getArticleType<T extends Article<'tutorial' | 'news'>>(article: T): T['type'] {
   return article.type
 }
 
@@ -227,11 +225,10 @@ console.log()
 
 console.log('=== Exemplo 6: Array of Different Article Types ===\n')
 
-const articles: AnyArticle[] = [tutorialArticle, newsArticle]
+const articles: ArticleByType[] = [tutorialArticle, newsArticle]
 
 articles.forEach(article => {
   console.log(`Article ${article.id} is of type: ${article.type}`)
-
   // Type narrowing baseado em 'type'
   if (article.type === 'tutorial') {
     // TypeScript sabe que é TutorialArticle aqui
@@ -251,7 +248,7 @@ console.log()
 
 console.log('=== 🎉 Dia 1 completo! ===\n')
 console.log('Tipos funcionando perfeitamente:')
-console.log('✅ ContentType (union type)')
+console.log('✅ ArticleType (union type)')
 console.log('✅ Tagged IDs (branded types)')
 console.log('✅ ArticleStatus (discriminated union)')
 console.log('✅ ArticleMetadata (lookup map)')

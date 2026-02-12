@@ -1,4 +1,4 @@
-import type { ContentType } from './content-type.type.js'
+import type { ArticleType } from './article.type.js'
 import type { MediaId } from './ids.type.js'
 
 /**
@@ -63,9 +63,9 @@ export type ReviewContent = {
 }
 
 /**
- * Lookup map: ContentType → Content
+ * Lookup map: ArticleType → Content
  * 
- * Uso: ArticleContent[T] onde T extends ContentType
+ * Uso: ArticleContent[T] onde T extends ArticleType
  * 
  * Garante que cada tipo de conteúdo tenha a estrutura correta.
  */
@@ -77,6 +77,6 @@ export type ArticleContent = {
 }
 
 /**
- * Helper type: extrai o tipo de content para um ContentType específico
+ * Helper type: extrai o tipo de content para um ArticleType específico
  */
-export type ContentForType<T extends ContentType> = ArticleContent[T]
+export type ContentForType<T extends ArticleType> = ArticleContent[T]
