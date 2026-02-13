@@ -2,7 +2,7 @@
  * Barrel export de todos os tipos do domínio.
  * 
  * Facilita imports:
- *   import { ArticleType, Article, ArticleStatus } from '@/content/domain/types'
+ *   import { ArticleType, ArticleStatus } from '@/content/domain/types'
  * 
  * Em vez de múltiplos imports individuais.
  */
@@ -63,8 +63,46 @@ export type {
 // Article
 export type {
   ArticleType,
-  Article
 } from './article.type.js'
 
 // SEO
 export type { SEOMetadata } from './seo-metadata.type.js'
+
+// Transitions
+export type {
+  SubmitForReview,
+  ApproveAndPublish,
+  RejectReview,
+  ArchiveDraft,
+  ArchivePublished,
+} from './article-transitions.type.js'
+
+export {
+  isSubmitForReview,
+  isApproveAndPublish,
+  isRejectReview,
+  isArchiveDraft,
+  isArchivePublished
+} from './article-transitions.type.js'
+
+// Errors
+export type {
+  DomainErrorType,
+  BaseDomainError,
+  ValidationError,
+  NotFoundError,
+  ConflictError,
+  UnauthorizedError,
+  DomainError,
+} from './domain-error.type.js'
+
+export {
+  isValidationError,
+  isNotFoundError,
+  isConflictError,
+  isUnauthorizedError,
+  validationError,
+  notFoundError,
+  conflictError,
+  unauthorizedError
+} from './domain-error.type.js'

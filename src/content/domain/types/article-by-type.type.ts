@@ -1,4 +1,5 @@
-import { Article, ArticleType } from './article.type.js'
+import { ArticleType } from './article.type.js'
+import { Article } from '../entities/article.entity.js'
 
 /**
  * Lookup-to-Union Type.
